@@ -47,9 +47,9 @@ class MyAnimeState extends State<MyAnime> {
 
   @override
   Widget build(BuildContext context) {
-    final animeViewModel = context.read<AnimeViewModel>();
+    final animeViewModel = context.watch<AnimeViewModel>();
     animeViewModel.fetchAnimes();
-    final reviewViewModel = context.read<ReviewViewModel>();
+    final reviewViewModel = context.watch<ReviewViewModel>();
     if (widget.anime != null) {
       reviewViewModel.fetchReviews(widget.anime!.animeId!);
     }

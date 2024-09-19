@@ -17,7 +17,7 @@ class MyAnimeIndex extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final animeViewModel = context.read<AnimeViewModel>();
+    final animeViewModel = context.watch<AnimeViewModel>();
     animeViewModel.fetchAnimes();
 
     return BaseImageContainer(
