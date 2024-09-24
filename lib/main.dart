@@ -5,6 +5,7 @@ import 'package:anime_database/services/anime_service.dart';
 import 'package:anime_database/services/review_service.dart';
 import 'package:anime_database/view_,models/anime_view_model.dart';
 import 'package:anime_database/view_,models/review_view_model.dart';
+import 'package:anime_database/views/pages/home.dart';
 import 'package:firebase_core/firebase_core.dart';
 import './config/firebase_options.dart';
 import 'package:flutter/material.dart';
@@ -32,7 +33,7 @@ class MyApp extends StatelessWidget {
       ],
       child: const MaterialApp(
         debugShowCheckedModeBanner: false,
-        initialRoute: Routes.myAnimeIndex,
+        home: Home(),
         onGenerateRoute: Routes.generateRoute,
       ),
     );
