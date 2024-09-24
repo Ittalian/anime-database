@@ -21,4 +21,8 @@ class AnimeRepository {
   Future<void> updateAnime(String animeId, String title) {
     return animeService.updateAnime(animeId, title);
   }
+
+  Future<void> deleteAnime(String animeId) {
+    return animeService.deleteAnime(animeId);
+  }
 }

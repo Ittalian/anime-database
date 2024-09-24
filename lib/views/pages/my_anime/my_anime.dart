@@ -22,6 +22,13 @@ class MyAnimeState extends State<MyAnime> {
   String title = '';
   String reviewText = '';
 
+  @override
+  void initState() {
+    super.initState();
+    title = widget.anime!.title;
+    reviewText = widget.review!.value;
+  }
+
   handleAdd(AnimeViewModel animeViewModel, ReviewViewModel reviewViewModel,
       String title, String reviewText) async {
     Anime anime = Anime(title: title);

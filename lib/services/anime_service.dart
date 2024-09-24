@@ -29,4 +29,12 @@ class AnimeService {
       print(e);
     }
   }
+
+  Future<void> deleteAnime(String animeId) async {
+    try {
+      await db.doc(animeId).delete();
+    } catch (e) {
+      print(e);
+    }
+  }
 }

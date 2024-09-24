@@ -17,8 +17,8 @@ class ReviewViewModel extends ChangeNotifier {
     });
   }
 
-  Future<Review> getReviewById(String reviewId) async {
-    return await reviewRepository.getReviewById(reviewId);
+  Future<Review> getReviewById(String animeId) async {
+    return await reviewRepository.getReviewById(animeId);
   }
 
   Future<String> addReview(Review review) async {
@@ -27,5 +27,9 @@ class ReviewViewModel extends ChangeNotifier {
 
   Future<void> updateReview(String reviewId, String value) async {
     return await reviewRepository.updateReview(reviewId, value);
+  }
+
+  Future<void> deleteReview(String reviewId) async {
+    return await reviewRepository.deleteReview(reviewId);
   }
 }

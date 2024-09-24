@@ -21,4 +21,8 @@ class ReviewRepository {
   Future<void> updateReview(String reviewId, String value) {
     return reviewService.updateReview(reviewId, value);
   }
+
+  Future<void> deleteReview(String reviewId) {
+    return reviewService.deleteReview(reviewId);
+  }
 }

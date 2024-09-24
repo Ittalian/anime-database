@@ -37,4 +37,12 @@ class ReviewService {
       print(e);
     }
   }
+
+  Future<void> deleteReview(String reviewId) async {
+    try {
+      await db.doc(reviewId).delete();
+    } catch (e) {
+      print(e);
+    }
+  }
 }
