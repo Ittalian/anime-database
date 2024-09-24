@@ -14,4 +14,19 @@ class AnimeService {
     DocumentReference ref = await db.add(anime.toMap());
     return ref.id;
   }
+
+  Future<Anime> getAnimeById(String animeId) async {
+    DocumentSnapshot<Map<String, dynamic>> doc = await db.doc(animeId).get();
+    return Anime.fromMap(doc.data()!, doc.id);
+  }
+
+  Future<void> updateAnime(String animeId, String title) async {
+    try {
+      await db.doc(animeId).update({
+        'title': title,
+      });
+    } catch (e) {
+      print(e);
+    }
+  }
 }

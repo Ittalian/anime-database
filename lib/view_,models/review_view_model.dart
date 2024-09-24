@@ -17,7 +17,15 @@ class ReviewViewModel extends ChangeNotifier {
     });
   }
 
+  Future<Review> getReviewById(String reviewId) async {
+    return await reviewRepository.getReviewById(reviewId);
+  }
+
   Future<String> addReview(Review review) async {
     return await reviewRepository.addReview(review);
+  }
+
+  Future<void> updateReview(String reviewId, String value) async {
+    return await reviewRepository.updateReview(reviewId, value);
   }
 }

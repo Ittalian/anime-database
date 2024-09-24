@@ -12,8 +12,29 @@ class ReviewService {
             .toList());
   }
 
+  Future<Review> getReviewById(String animeId) async {
+    return db
+        .where('anime_id', isEqualTo: animeId)
+        .snapshots()
+        .map((snapshot) => snapshot.docs
+            .map((doc) => Review.fromMap(doc.data(), doc.id))
+            .toList()
+            .first)
+        .first;
+  }
+
   Future<String> addReview(Review review) async {
     DocumentReference ref = await db.add(review.toMap());
     return ref.id;
+  }
+
+  Future<void> updateReview(String reviewId, String value) async {
+    try {
+      return await db.doc(reviewId).update({
+        'value': value,
+      });
+    } catch (e) {
+      print(e);
+    }
   }
 }

@@ -23,4 +23,12 @@ class AnimeViewModel extends ChangeNotifier {
   Future<String> addAnime(Anime anime) async {
     return await animeRepository.addAnime(anime);
   }
+
+  Future<Anime> getAnimeById(String animeId) async {
+    return await animeRepository.getAnimeById(animeId);
+  }
+
+  Future<void> updateAnime(String animeId, String title) async {
+    return await animeRepository.updateAnime(animeId, title);
+  }
 }

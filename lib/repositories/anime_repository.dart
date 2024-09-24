@@ -13,4 +13,12 @@ class AnimeRepository {
   Future<String> addAnime(Anime anime) {
     return animeService.addAnime(anime);
   }
+
+  Future<Anime> getAnimeById(String animeId) {
+    return animeService.getAnimeById(animeId);
+  }
+
+  Future<void> updateAnime(String animeId, String title) {
+    return animeService.updateAnime(animeId, title);
+  }
 }

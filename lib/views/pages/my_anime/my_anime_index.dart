@@ -11,7 +11,7 @@ class MyAnimeIndex extends StatelessWidget {
   handleAddAnime(BuildContext context) {
     Navigator.pushNamed(
       context,
-      Routes.myAnime,
+      Routes.myAnimeAdd,
     );
   }
 
