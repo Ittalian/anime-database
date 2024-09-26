@@ -1,7 +1,7 @@
 import 'package:anime_database/config/routes.dart';
 import 'package:anime_database/utils/models/search_anime.dart';
 import 'package:anime_database/views/widgets/base/base_text.dart';
-import 'package:flutter/widgets.dart';
+import 'package:flutter/material.dart';
 
 class SearchResultTile extends StatelessWidget {
   final SearchAnime anime;
@@ -13,8 +13,9 @@ class SearchResultTile extends StatelessWidget {
       context,
       Routes.searchDetails,
 			arguments: {
-				'public_url': anime.publicUrl,
-				'x_account_url': anime.xAccountUrl,
+				'title': anime.title,
+				'official_site_url': anime.officialSiteUrl,
+        'wikipedia_url': anime.wikipeidaUrl,
 			},
 		);
 	}
@@ -24,12 +25,15 @@ class SearchResultTile extends StatelessWidget {
 		return GestureDetector(
 			onTap: () => handleShowDetail(context, anime),
 			child: Container(
+        color: Colors.white,
 				margin: const EdgeInsets.all(10),
 				padding: const EdgeInsets.all(10),
-				child: Column(
+				child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
 					children: [
-						BaseText(value: anime.animeTitle, fontSize: 20),
-						// BaseText(value: anime.sequel ? 'なし' : 'あり', fontSize: 15),
+						Expanded(child: BaseText(value: anime.title, fontSize: 20)),
+            const Padding(padding: EdgeInsets.only(left: 10)),
+            BaseText(value: '全${anime.episodeCount}話', fontSize: 15)
 					]
 				)
 			)

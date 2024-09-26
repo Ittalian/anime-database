@@ -3,6 +3,7 @@ import 'package:anime_database/models/review.dart';
 import 'package:anime_database/utils/models/search_anime.dart';
 import 'package:anime_database/views/pages/my_anime/my_anime.dart';
 import 'package:anime_database/views/pages/my_anime/my_anime_index.dart';
+import 'package:anime_database/views/pages/search/search_detail.dart';
 import 'package:anime_database/views/pages/search/search_result.dart';
 import 'package:flutter/material.dart';
 
@@ -28,7 +29,16 @@ class Routes {
                 ));
       case searchResult:
         final searchResultOptions = settings.arguments as Map;
-        return MaterialPageRoute(builder: (_) => SearchResult(animes: searchResultOptions['animes'] as List<SearchAnime>));
+        return MaterialPageRoute(
+            builder: (_) => SearchResult(
+                animes: searchResultOptions['animes'] as List<SearchAnime>));
+      case searchDetails:
+        final searchDetailOptions = settings.arguments as Map;
+        return MaterialPageRoute(builder: (_) => SearchDetail(
+          title: searchDetailOptions['title'],
+          officialUrl: searchDetailOptions['official_site_url'] ?? '',
+          wikipediaUrl: searchDetailOptions['wikipedia_url'] ?? '',
+        ));
       default:
         return MaterialPageRoute(
             builder: (_) => Scaffold(

@@ -1,11 +1,13 @@
 class SearchAnime {
-  String animeTitle;
-  String publicUrl;
-  String xAccountUrl;
+  String title;
+  int episodeCount;
+  String? officialSiteUrl;
+  String? wikipeidaUrl;
 
   SearchAnime({
-    required this.animeTitle,
-    required this.publicUrl,
-    required this.xAccountUrl,
+    required this.title,
+    required this.episodeCount,
+    this.officialSiteUrl,
+    this.wikipeidaUrl,
   });
 }
