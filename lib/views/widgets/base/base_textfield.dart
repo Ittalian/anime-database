@@ -18,9 +18,12 @@ class BaseTextfieldState extends State<BaseTextfield> {
   Widget build(BuildContext context) {
     return Container(
       alignment: Alignment.center,
+      margin: const EdgeInsets.all(10),
+      padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
+      color: Colors.white,
       child: TextFormField(
         controller: controller,
-        decoration: InputDecoration(labelText: widget.label),
+        decoration: InputDecoration(labelText: widget.label, border: InputBorder.none),
         onChanged: (value) => widget.setValue(value),
       ),
     );
