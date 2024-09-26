@@ -1,6 +1,7 @@
 import 'package:anime_database/config/routes.dart';
 import 'package:anime_database/models/anime.dart';
 import 'package:anime_database/models/review.dart';
+import 'package:anime_database/utils/widgets/loading_dialog.dart';
 import 'package:anime_database/view_,models/anime_view_model.dart';
 import 'package:anime_database/view_,models/review_view_model.dart';
 import 'package:anime_database/views/widgets/base/base_button.dart';
@@ -25,8 +26,12 @@ class MyAnimeState extends State<MyAnime> {
   @override
   void initState() {
     super.initState();
-    title = widget.anime!.title;
-    reviewText = widget.review!.value;
+    if (widget.anime != null) {
+      title = widget.anime!.title;
+    }
+    if (widget.review != null) {
+      reviewText = widget.review!.value;
+    }
   }
 
   handleAdd(AnimeViewModel animeViewModel, ReviewViewModel reviewViewModel,
@@ -35,6 +40,7 @@ class MyAnimeState extends State<MyAnime> {
     String animeId = await animeViewModel.addAnime(anime);
     Review review = Review(animeId: animeId, value: reviewText);
     await reviewViewModel.addReview(review);
+    await LoadingDialog.hide(context);
     Navigator.pushNamed(context, Routes.myAnimeIndex);
   }
 
@@ -42,6 +48,7 @@ class MyAnimeState extends State<MyAnime> {
       String title, String reviewText) async {
     await animeViewModel.updateAnime(widget.anime!.animeId!, title);
     await reviewViewModel.updateReview(widget.review!.reviewId!, reviewText);
+    await LoadingDialog.hide(context);
     Navigator.pushNamed(context, Routes.myAnimeIndex);
   }
 
@@ -89,12 +96,18 @@ class MyAnimeState extends State<MyAnime> {
               widget.anime == null || widget.review == null
                   ? BaseButton(
                       label: '登録',
-                      onPressed: () => handleAdd(
-                          animeViewModel, reviewViewModel, title, reviewText))
+                      onPressed: () async {
+                        await LoadingDialog.show(context, '登録しています');
+                        handleAdd(
+                            animeViewModel, reviewViewModel, title, reviewText);
+                      })
                   : BaseButton(
                       label: '編集',
-                      onPressed: () => handleEdit(
-                          animeViewModel, reviewViewModel, title, reviewText)),
+                      onPressed: () async {
+                        await LoadingDialog.show(context, '編集しています');
+                        handleEdit(
+                            animeViewModel, reviewViewModel, title, reviewText);
+                      }),
             ])));
   }
 }

@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:anime_database/config/routes.dart';
 import 'package:anime_database/utils/models/search_anime.dart';
+import 'package:anime_database/utils/widgets/loading_dialog.dart';
 import 'package:anime_database/views/widgets/base/base_button.dart';
 import 'package:anime_database/views/widgets/base/base_image_container.dart';
 import 'package:anime_database/views/widgets/base/base_radio_button.dart';
@@ -33,7 +34,9 @@ class SearchState extends State<Search> {
   }
 
   handleSearch() async {
+    await LoadingDialog.show(context, '検索中');
     List<SearchAnime> searchResults = await search();
+    await LoadingDialog.hide(context);
     moveSearchResults(searchResults);
   }
 
