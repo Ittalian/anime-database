@@ -25,16 +25,18 @@ class BaseRadioButtonState extends State<BaseRadioButton> {
         mainAxisAlignment: MainAxisAlignment.center,
         children: widget.selectMap.entries.map((entry) {
           return Expanded(
-              child: RadioListTile<String>(
-                  title: Text(entry.key),
-                  value: entry.value,
-                  groupValue: selectedValue,
-                  onChanged: (value) {
-                    setState(() {
-                      selectedValue = value!;
-                      widget.onSelected(selectedValue);
-                    });
-                  }));
+              child: Row(children: [
+            Radio<String>(
+                value: entry.value,
+                groupValue: selectedValue,
+                onChanged: (value) {
+                  setState(() {
+                    selectedValue = value!;
+                    widget.onSelected(selectedValue);
+                  });
+                }),
+            Text(entry.key)
+          ]));
         }).toList());
   }
 }

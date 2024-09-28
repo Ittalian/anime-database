@@ -20,7 +20,7 @@ class BaseTextfieldState extends State<BaseTextfield> {
       alignment: Alignment.center,
       margin: const EdgeInsets.all(10),
       padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
-      color: Colors.white,
+      color: Colors.white.withOpacity(0.5),
       child: TextFormField(
         controller: controller,
         decoration: InputDecoration(labelText: widget.label, border: InputBorder.none),
