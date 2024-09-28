@@ -28,12 +28,8 @@ class MyAnimeState extends State<MyAnime> {
   @override
   void initState() {
     super.initState();
-    if (widget.anime != null) {
-      title = widget.anime!.title;
-    }
-    if (widget.review != null) {
-      reviewText = widget.review!.value;
-    }
+    title = widget.anime!.title;
+    reviewText = widget.review!.value;
   }
 
   handleAdd(AnimeViewModel animeViewModel, ReviewViewModel reviewViewModel,
@@ -42,7 +38,6 @@ class MyAnimeState extends State<MyAnime> {
     String animeId = await animeViewModel.addAnime(anime);
     Review review = Review(animeId: animeId, value: reviewText);
     await reviewViewModel.addReview(review);
-    await LoadingDialog.hide(context);
     Navigator.pushNamed(context, Routes.myAnimeIndex);
   }
 
@@ -50,7 +45,6 @@ class MyAnimeState extends State<MyAnime> {
       String title, String reviewText) async {
     await animeViewModel.updateAnime(widget.anime!.animeId!, title);
     await reviewViewModel.updateReview(widget.review!.reviewId!, reviewText);
-    await LoadingDialog.hide(context);
     Navigator.pushNamed(context, Routes.myAnimeIndex);
   }
 

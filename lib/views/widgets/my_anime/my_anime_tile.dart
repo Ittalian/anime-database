@@ -27,7 +27,7 @@ class MyAnimeTile extends StatelessWidget {
     final animeViewModel = context.read<AnimeViewModel>();
     await animeViewModel.deleteAnime(anime.animeId!);
     final review = await reviewViewModel.getReviewById(anime.animeId!);
-    await reviewViewModel.deleteReview(review.reviewId!);
+    reviewViewModel.deleteReview(review.reviewId!);
   }
 
   @override
@@ -47,14 +47,14 @@ class MyAnimeTile extends StatelessWidget {
             padding: const EdgeInsets.fromLTRB(50, 10, 10, 10),
             margin: const EdgeInsets.all(10),
             child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  BaseText(value: anime.title, fontSize: 20),
-                  BaseButton(
-                      label: '削除',
-                      onPressed: () {
-                        handleDelete(context, reviewViewModel);
-                      })
-                ])));
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+              BaseText(value: anime.title, fontSize: 20),
+              BaseButton(
+                  label: '削除',
+                  onPressed: () async {
+                    await handleDelete(context, reviewViewModel);
+                  })
+            ])));
   }
 }
