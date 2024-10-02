@@ -22,11 +22,11 @@ class BaseSelectState extends State<BaseSelect> {
   @override
   void initState() {
     super.initState();
-    if (widget.initDate != null) {
+    if (widget.initDate != 0) {
       selectedDay = widget.selectMap.entries
           .firstWhere((entry) => entry.value == widget.initDate.toString(),
               orElse: () => const MapEntry('', ''))
-          .key;
+          .value;
     }
   }
 

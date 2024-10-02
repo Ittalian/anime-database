@@ -110,8 +110,9 @@ class AnimeParticularViewState extends State<AnimeParticularView> {
               ]),
               const Padding(padding: EdgeInsets.only(top: 20)),
               BaseSelect(
-                  selectMap: anime_particular.dayOdWeek,
+                  selectMap: anime_particular.dayOfWeek,
                   hintText: anime_particular.hintText,
+                  initDate: date,
                   onSelected: (value) => setDate(value)),
               const Padding(padding: EdgeInsets.only(top: 20)),
               BaseButton(

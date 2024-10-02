@@ -1,4 +1,4 @@
-const Map<String, String> dayOdWeek = {
+const Map<String, String> dayOfWeek = {
   '月': '1',
   '火': '2',
   '水': '3',
