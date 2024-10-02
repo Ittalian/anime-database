@@ -28,12 +28,12 @@ class AnimeParticularService {
   }
 
   Future<void> updateAnimeParticular(String animeParticularId, int latestStory,
-      int currentStory, int dateId) async {
+      int currentStory, int date) async {
     try {
       await db.doc(animeParticularId).update({
-        latestStory: latestStory,
-        currentStory: currentStory,
-        dateId: dateId,
+        'latest_story': latestStory,
+        'current_story': currentStory,
+        'date_id': date,
       });
     } catch (e) {
       print(e);

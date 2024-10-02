@@ -3,11 +3,13 @@ import 'package:flutter/material.dart';
 class BaseSelect extends StatefulWidget {
   final Map<String, String> selectMap;
   final String hintText;
+  final int? initDate;
   final Function(String) onSelected;
   const BaseSelect(
       {super.key,
       required this.selectMap,
       required this.hintText,
+      this.initDate,
       required this.onSelected});
 
   @override
@@ -16,6 +18,17 @@ class BaseSelect extends StatefulWidget {
 
 class BaseSelectState extends State<BaseSelect> {
   String? selectedDay;
+
+  @override
+  void initState() {
+    super.initState();
+    if (widget.initDate != null) {
+      selectedDay = widget.selectMap.entries
+          .firstWhere((entry) => entry.value == widget.initDate.toString(),
+              orElse: () => const MapEntry('', ''))
+          .key;
+    }
+  }
 
   @override
   Widget build(BuildContext context) {

@@ -28,8 +28,12 @@ class MyAnimeState extends State<MyAnime> {
   @override
   void initState() {
     super.initState();
-    title = widget.anime!.title;
-    reviewText = widget.review!.value;
+    if (widget.anime != null) {
+      title = widget.anime!.title;
+    }
+    if (widget.review != null) {
+      reviewText = widget.review!.value;
+    }
   }
 
   handleAdd(AnimeViewModel animeViewModel, ReviewViewModel reviewViewModel,
@@ -81,9 +85,7 @@ class MyAnimeState extends State<MyAnime> {
         child: Scaffold(
           backgroundColor:
               const Color.fromRGBO(255, 255, 255, 1).withOpacity(0),
-          body: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
+          body: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
             widget.anime == null
                 ? BaseTextfield(
                     label: 'タイトル', setValue: (value) => setTitle(value))
@@ -114,14 +116,26 @@ class MyAnimeState extends State<MyAnime> {
                           animeViewModel, reviewViewModel, title, reviewText);
                     }),
           ]),
-          floatingActionButton: FloatingActionButton(
-            onPressed: () async {
-              AnimeParticular animeParticular = await animeParticularViewModel
-                  .getAnimeParticularById(widget.anime!.animeId!);
-              moveAnimeParticular(animeParticular);
-            },
-            child: const Icon(Icons.details),
-          ),
+          floatingActionButton: widget.anime == null
+              ? null
+              : FloatingActionButton(
+                  onPressed: () async {
+                    try {
+                      AnimeParticular animeParticular =
+                          await animeParticularViewModel
+                              .getAnimeParticularById(widget.anime!.animeId!);
+                      moveAnimeParticular(animeParticular);
+                    } catch (e) {
+                      moveAnimeParticular(AnimeParticular(
+                        animeId: widget.anime!.animeId!,
+                        latestStory: 0,
+                        currentStory: 0,
+                        dateId: 0,
+                      ));
+                    }
+                  },
+                  child: const Text('進捗', style: TextStyle(fontSize: 20)),
+                ),
         ));
   }
 }

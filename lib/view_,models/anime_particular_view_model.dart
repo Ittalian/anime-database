@@ -10,7 +10,7 @@ class AnimeParticularViewModel extends ChangeNotifier {
 
   AnimeParticularViewModel(this.animeParticularRepository);
 
-  Future<void> fetchAnimeParticulars() async {
+  Future<void> fetchAnimeParticulars(String animeId) async {
     animeParticularRepository
         .getAnimeParticulars()
         .listen((animeParticularList) {
@@ -28,12 +28,12 @@ class AnimeParticularViewModel extends ChangeNotifier {
   }
 
   Future<void> updateAnimeParticular(String animeParticularId, int latestStory,
-      int currentStory, int dateId) async {
-    return await animeParticularRepository.updateAnime(
-        animeParticularId, latestStory, currentStory, dateId);
+      int currentStory, int date) async {
+    return await animeParticularRepository.updateAnimeParticular(
+        animeParticularId, latestStory, currentStory, date);
   }
 
   Future<void> deleteAnimeParticluar(String reviewId) async {
-    return await animeParticularRepository.deleteAnime(reviewId);
+    return await animeParticularRepository.deleteAnimeParticular(reviewId);
   }
 }

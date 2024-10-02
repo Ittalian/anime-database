@@ -17,13 +17,13 @@ class AnimeParticularRepository {
     return animeParticularService.getAnimeParticularById(animeId);
   }
 
-  Future<void> updateAnime(
-      String animeId, int latestStory, int currentStory, int dateId) {
+  Future<void> updateAnimeParticular(
+      String animeId, int latestStory, int currentStory, int date) {
     return animeParticularService.updateAnimeParticular(
-        animeId, latestStory, currentStory, dateId);
+        animeId, latestStory, currentStory, date);
   }
 
-  Future<void> deleteAnime(String animeId) {
+  Future<void> deleteAnimeParticular(String animeId) {
     return animeParticularService.deleteAnimeParticular(animeId);
   }
 }
