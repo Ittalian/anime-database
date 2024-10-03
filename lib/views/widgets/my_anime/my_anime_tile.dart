@@ -4,6 +4,7 @@ import 'package:anime_database/models/review.dart';
 import 'package:anime_database/view_,models/anime_view_model.dart';
 import 'package:anime_database/view_,models/review_view_model.dart';
 import 'package:anime_database/views/widgets/base/base_button.dart';
+import 'package:anime_database/views/widgets/my_anime/progress_bar.dart';
 import 'package:anime_database/views/widgets/base/base_text.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -44,17 +45,20 @@ class MyAnimeTile extends StatelessWidget {
         },
         child: Container(
             color: Colors.white.withOpacity(0.5),
-            padding: const EdgeInsets.fromLTRB(50, 10, 10, 10),
+            padding: const EdgeInsets.fromLTRB(30, 10, 30, 10),
             margin: const EdgeInsets.all(10),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-              BaseText(value: anime.title, fontSize: 20),
-              BaseButton(
-                  label: '削除',
-                  onPressed: () async {
-                    await handleDelete(context, reviewViewModel);
-                  })
+            child:
+                Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+              Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
+                BaseText(value: anime.title, fontSize: 20),
+                BaseButton(
+                    label: '削除',
+                    onPressed: () async {
+                      await handleDelete(context, reviewViewModel);
+                    })
+              ]),
+              const Padding(padding: EdgeInsets.only(top: 10)),
+              ProgressBar(animeId: anime.animeId!),
             ])));
   }
 }

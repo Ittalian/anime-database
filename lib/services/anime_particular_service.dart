@@ -17,14 +17,17 @@ class AnimeParticularService {
   }
 
   Future<AnimeParticular> getAnimeParticularById(String animeId) async {
-    return db
-        .where('anime_id', isEqualTo: animeId)
-        .snapshots()
-        .map((snapshot) => snapshot.docs
-            .map((doc) => AnimeParticular.fromMap(doc.data(), doc.id))
-            .toList()
-            .first)
-        .first;
+    try {
+      final snapshot = await db.where('anime_id', isEqualTo: animeId).get();
+      if (snapshot.docs.isNotEmpty) {
+        final doc = snapshot.docs.first;
+        return AnimeParticular.fromMap(doc.data(), doc.id);
+      } else {
+        throw Exception('No data found for animeId: $animeId');
+      }
+    } catch (e) {
+      rethrow;
+    }
   }
 
   Future<void> updateAnimeParticular(String animeParticularId, int latestStory,
