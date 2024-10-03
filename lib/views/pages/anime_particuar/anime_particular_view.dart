@@ -30,13 +30,13 @@ class AnimeParticularViewState extends State<AnimeParticularView> {
     super.initState();
     setCurrentStory(widget.animeParticular.currentStory.toString());
     setLatestStory(widget.animeParticular.latestStory.toString());
+    setDate(widget.animeParticular.dateId.toString());
     checkExistAnimeParticular();
   }
 
   checkExistAnimeParticular() {
     if (widget.animeParticular.currentStory != 0 &&
-        widget.animeParticular.latestStory != 0 &&
-        widget.animeParticular.dateId != 0) {
+        widget.animeParticular.latestStory != 0) {
       isExistAnimeParticular = true;
     }
   }
@@ -75,10 +75,10 @@ class AnimeParticularViewState extends State<AnimeParticularView> {
       ));
     }
     await LoadingDialog.hide(context);
-    moveAnimeDetail();
+    moveAnimeIndex();
   }
 
-  moveAnimeDetail() {
+  moveAnimeIndex() {
     Navigator.pushNamed(context, Routes.myAnimeIndex);
   }
 
@@ -115,7 +115,7 @@ class AnimeParticularViewState extends State<AnimeParticularView> {
               BaseSelect(
                   selectMap: anime_particular.dayOfWeek,
                   hintText: anime_particular.hintText,
-                  initDate: widget.animeParticular.dateId,
+                  initDate: date,
                   onSelected: (value) => setDate(value)),
               const Padding(padding: EdgeInsets.only(top: 20)),
               BaseButton(

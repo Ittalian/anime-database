@@ -3,8 +3,8 @@ import 'package:anime_database/models/anime_particular.dart';
 import 'package:anime_database/models/review.dart';
 import 'package:anime_database/utils/models/search_anime.dart';
 import 'package:anime_database/views/pages/anime_particuar/anime_particular_view.dart';
+import 'package:anime_database/views/pages/home.dart';
 import 'package:anime_database/views/pages/my_anime/my_anime.dart';
-import 'package:anime_database/views/pages/my_anime/my_anime_index.dart';
 import 'package:anime_database/views/pages/search/search_detail.dart';
 import 'package:anime_database/views/pages/search/search_result.dart';
 import 'package:flutter/material.dart';
@@ -20,7 +20,7 @@ class Routes {
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
       case myAnimeIndex:
-        return MaterialPageRoute(builder: (_) => const MyAnimeIndex());
+        return MaterialPageRoute(builder: (_) => const Home());
       case myAnimeAdd:
         return MaterialPageRoute(builder: (_) => const MyAnime());
       case myAnimeEdit:
