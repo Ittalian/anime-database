@@ -13,8 +13,19 @@ class BaseNumberfield extends StatefulWidget {
 }
 
 class BaseNumberfieldState extends State<BaseNumberfield> {
-  late TextEditingController controller =
-      TextEditingController(text: widget.initNumer ?? '');
+  late TextEditingController controller;
+
+  @override
+  void initState() {
+    super.initState();
+    controller = TextEditingController(text: widget.initNumer);
+  }
+
+  @override
+  void dispose() {
+    controller.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +34,8 @@ class BaseNumberfieldState extends State<BaseNumberfield> {
       padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
       color: Colors.white.withOpacity(0.5),
       child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-        Expanded(child: TextFormField(
+        Expanded(
+            child: TextFormField(
           textAlign: TextAlign.center,
           controller: controller,
           keyboardType: TextInputType.number,

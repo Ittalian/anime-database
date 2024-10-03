@@ -39,7 +39,7 @@ class ProgressBarState extends State<ProgressBar> {
         if (snapshot.connectionState == ConnectionState.waiting) {
           return const CircularProgressIndicator();
         } else if (snapshot.hasError) {
-          return Text('エラーが発生しました: ${snapshot.error}');
+          return const Text('進捗が登録されていません');
         } else if (!snapshot.hasData) {
           return const Text('データが見つかりません');
         } else {

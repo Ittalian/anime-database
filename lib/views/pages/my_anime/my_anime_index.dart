@@ -24,9 +24,10 @@ class MyAnimeIndex extends StatelessWidget {
       imagePath: 'images/my_anime_index.jpg',
       child: Scaffold(
           backgroundColor: Colors.white.withOpacity(0),
-          body: Column(children: [
+          body: SingleChildScrollView(
+              child: Column(children: [
             for (var anime in animeViewModel.animes) MyAnimeTile(anime: anime),
-          ]),
+          ])),
           floatingActionButton: FloatingActionButton(
               child: const Icon(Icons.add),
               onPressed: () => handleAddAnime(context))),

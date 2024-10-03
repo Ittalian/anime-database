@@ -52,7 +52,7 @@ class MyAnimeTile extends StatelessWidget {
               Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
                 BaseText(value: anime.title, fontSize: 20),
                 BaseButton(
-                    label: '削除',
+                    label: '視聴済み',
                     onPressed: () async {
                       await handleDelete(context, reviewViewModel);
                     })

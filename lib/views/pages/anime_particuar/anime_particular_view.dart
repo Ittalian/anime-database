@@ -28,12 +28,15 @@ class AnimeParticularViewState extends State<AnimeParticularView> {
   @override
   void initState() {
     super.initState();
+    setCurrentStory(widget.animeParticular.currentStory.toString());
+    setLatestStory(widget.animeParticular.latestStory.toString());
     checkExistAnimeParticular();
   }
 
   checkExistAnimeParticular() {
     if (widget.animeParticular.currentStory != 0 &&
-        widget.animeParticular.latestStory != 0) {
+        widget.animeParticular.latestStory != 0 &&
+        widget.animeParticular.dateId != 0) {
       isExistAnimeParticular = true;
     }
   }
@@ -65,11 +68,11 @@ class AnimeParticularViewState extends State<AnimeParticularView> {
           date);
     } else {
       await animeParticularViewModel.addAnimeParticular(AnimeParticular(
-          animeId: widget.animeParticular.animeId,
-          latestStory: latestStory,
-          currentStory: currentStory,
-          dateId: date,
-          ));
+        animeId: widget.animeParticular.animeId,
+        latestStory: latestStory,
+        currentStory: currentStory,
+        dateId: date,
+      ));
     }
     await LoadingDialog.hide(context);
     moveAnimeDetail();

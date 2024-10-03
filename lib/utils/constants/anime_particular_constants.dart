@@ -6,6 +6,7 @@ const Map<String, String> dayOfWeek = {
   '金': '5',
   '土': '6',
   '日': '7',
+  '完結': '8',
 };
 
 const hintText = '曜日を選択';

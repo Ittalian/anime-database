@@ -124,18 +124,14 @@ class MyAnimeState extends State<MyAnime> {
                       AnimeParticular? animeParticular =
                           await animeParticularViewModel
                               .getAnimeParticularById(widget.anime!.animeId!);
-                      if (animeParticular != null) {
-                        moveAnimeParticular(animeParticular);
-                      } else {
-                        moveAnimeParticular(AnimeParticular(
-                          animeId: widget.anime!.animeId!,
-                          latestStory: 0,
-                          currentStory: 0,
-                          dateId: 0,
-                        ));
-                      }
+                      moveAnimeParticular(animeParticular!);
                     } catch (e) {
-                      print(e);
+                      moveAnimeParticular(AnimeParticular(
+                        animeId: widget.anime!.animeId!,
+                        latestStory: 0,
+                        currentStory: 0,
+                        dateId: 0,
+                      ));
                     }
                   },
                   child: const Text('進捗', style: TextStyle(fontSize: 20)),
