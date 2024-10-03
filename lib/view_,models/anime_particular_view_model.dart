@@ -19,7 +19,7 @@ class AnimeParticularViewModel extends ChangeNotifier {
     });
   }
 
-  Future<AnimeParticular> getAnimeParticularById(String animeId) async {
+  Future<AnimeParticular?> getAnimeParticularById(String animeId) async {
     return await animeParticularRepository.getAnimeParticularById(animeId);
   }
 

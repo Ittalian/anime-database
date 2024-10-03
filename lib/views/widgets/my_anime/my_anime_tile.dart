@@ -43,7 +43,7 @@ class MyAnimeTile extends StatelessWidget {
           );
         },
         child: Container(
-            color: Colors.white,
+            color: Colors.white.withOpacity(0.5),
             padding: const EdgeInsets.fromLTRB(50, 10, 10, 10),
             margin: const EdgeInsets.all(10),
             child: Row(

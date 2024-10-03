@@ -121,17 +121,21 @@ class MyAnimeState extends State<MyAnime> {
               : FloatingActionButton(
                   onPressed: () async {
                     try {
-                      AnimeParticular animeParticular =
+                      AnimeParticular? animeParticular =
                           await animeParticularViewModel
                               .getAnimeParticularById(widget.anime!.animeId!);
-                      moveAnimeParticular(animeParticular);
+                      if (animeParticular != null) {
+                        moveAnimeParticular(animeParticular);
+                      } else {
+                        moveAnimeParticular(AnimeParticular(
+                          animeId: widget.anime!.animeId!,
+                          latestStory: 0,
+                          currentStory: 0,
+                          dateId: 0,
+                        ));
+                      }
                     } catch (e) {
-                      moveAnimeParticular(AnimeParticular(
-                        animeId: widget.anime!.animeId!,
-                        latestStory: 0,
-                        currentStory: 0,
-                        dateId: 0,
-                      ));
+                      print(e);
                     }
                   },
                   child: const Text('進捗', style: TextStyle(fontSize: 20)),

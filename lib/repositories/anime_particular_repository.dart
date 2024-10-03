@@ -13,7 +13,7 @@ class AnimeParticularRepository {
     return animeParticularService.addAnimeParticular(animeParticular);
   }
 
-  Future<AnimeParticular> getAnimeParticularById(String animeId) {
+  Future<AnimeParticular?> getAnimeParticularById(String animeId) {
     return animeParticularService.getAnimeParticularById(animeId);
   }
 
