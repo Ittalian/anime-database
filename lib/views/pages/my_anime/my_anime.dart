@@ -11,6 +11,7 @@ import 'package:anime_database/views/widgets/base/base_image_container.dart';
 import 'package:anime_database/views/widgets/base/base_textfield.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import '../../../utils/constants/my_anime_constants.dart' as my_anime;
 
 class MyAnime extends StatefulWidget {
   final Anime? anime;
@@ -88,30 +89,32 @@ class MyAnimeState extends State<MyAnime> {
           body: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
             widget.anime == null
                 ? BaseTextfield(
-                    label: 'タイトル', setValue: (value) => setTitle(value))
+                    label: my_anime.labelText['title']!,
+                    setValue: (value) => setTitle(value))
                 : BaseTextfield(
-                    label: 'タイトル',
+                    label: my_anime.labelText['title']!,
                     initText: widget.anime!.title,
                     setValue: (value) => setTitle(value)),
             widget.review == null
                 ? BaseTextfield(
-                    label: 'レビュー', setValue: (value) => setReviewText(value))
+                    label: my_anime.labelText['review']!,
+                    setValue: (value) => setReviewText(value))
                 : BaseTextfield(
-                    label: 'レビュー',
+                    label: my_anime.labelText['review']!,
                     initText: widget.review!.value,
                     setValue: (value) => setReviewText(value)),
             widget.anime == null || widget.review == null
                 ? BaseButton(
-                    label: '登録',
+                    label: my_anime.labelText['add']!,
                     onPressed: () async {
-                      await LoadingDialog.show(context, '登録しています');
+                      await LoadingDialog.show(context, my_anime.saving);
                       handleAdd(
                           animeViewModel, reviewViewModel, title, reviewText);
                     })
                 : BaseButton(
-                    label: '編集',
+                    label: my_anime.labelText['edit']!,
                     onPressed: () async {
-                      await LoadingDialog.show(context, '編集しています');
+                      await LoadingDialog.show(context, my_anime.editing);
                       handleEdit(
                           animeViewModel, reviewViewModel, title, reviewText);
                     }),
@@ -134,7 +137,8 @@ class MyAnimeState extends State<MyAnime> {
                       ));
                     }
                   },
-                  child: const Text('進捗', style: TextStyle(fontSize: 20)),
+                  child: const Text(my_anime.progress,
+                      style: TextStyle(fontSize: 20)),
                 ),
         ));
   }

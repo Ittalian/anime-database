@@ -93,22 +93,22 @@ class AnimeParticularViewState extends State<AnimeParticularView> {
               Row(mainAxisAlignment: MainAxisAlignment.center, children: [
                 isExistAnimeParticular
                     ? BaseNumberfield(
-                        label: '最新',
+                        label: anime_particular.numerFieldText['latest']!,
                         initNumer:
                             widget.animeParticular.latestStory.toString(),
                         setValue: (value) => setLatestStory(value))
                     : BaseNumberfield(
-                        label: '最新',
+                        label: anime_particular.numerFieldText['latest']!,
                         setValue: (value) => setLatestStory(value)),
                 const Padding(padding: EdgeInsets.only(left: 20)),
                 isExistAnimeParticular
                     ? BaseNumberfield(
-                        label: '現在',
+                        label: anime_particular.numerFieldText['current']!,
                         initNumer:
                             widget.animeParticular.currentStory.toString(),
                         setValue: (value) => setCurrentStory(value))
                     : BaseNumberfield(
-                        label: '現在',
+                        label: anime_particular.numerFieldText['current']!,
                         setValue: (value) => setCurrentStory(value)),
               ]),
               const Padding(padding: EdgeInsets.only(top: 20)),
@@ -121,7 +121,7 @@ class AnimeParticularViewState extends State<AnimeParticularView> {
               BaseButton(
                   label: '保存',
                   onPressed: () async {
-                    await LoadingDialog.show(context, '保存しています');
+                    await LoadingDialog.show(context, anime_particular.saving);
                     await handleSave(animeParticularViewModel);
                   })
             ])));

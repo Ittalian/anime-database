@@ -1,6 +1,7 @@
 import 'package:anime_database/config/routes.dart';
 import 'package:anime_database/models/anime.dart';
 import 'package:anime_database/models/review.dart';
+import 'package:anime_database/utils/widgets/alert_dialog.dart';
 import 'package:anime_database/view_,models/anime_view_model.dart';
 import 'package:anime_database/view_,models/review_view_model.dart';
 import 'package:anime_database/views/widgets/base/base_button.dart';
@@ -54,7 +55,10 @@ class MyAnimeTile extends StatelessWidget {
                 BaseButton(
                     label: '視聴済み',
                     onPressed: () async {
-                      await handleDelete(context, reviewViewModel);
+                      AlertMessageDialog.show(context, 'このアニメを視聴済みにしますか？',
+                          () async {
+                        await handleDelete(context, reviewViewModel);
+                      });
                     })
               ]),
               const Padding(padding: EdgeInsets.only(top: 10)),

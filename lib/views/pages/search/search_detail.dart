@@ -4,6 +4,7 @@ import 'package:anime_database/views/widgets/base/base_text.dart';
 import 'package:anime_database/views/widgets/base/base_text_button.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
+import '../../../utils/constants/search_detail_constants.dart' as search_detail;
 
 class SearchDetail extends StatelessWidget {
   final String title;
@@ -13,17 +14,27 @@ class SearchDetail extends StatelessWidget {
   const SearchDetail(
       {super.key, required this.title, this.wikipediaUrl, this.officialUrl});
 
-  void renderOfficialSite() {
+  void showNothingMessage(BuildContext context) {
+    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+      content: const Text(search_detail.urlNotFoundErrorText),
+      action: SnackBarAction(
+        label: 'OK',
+        onPressed: () {},
+      ),
+    ));
+  }
+
+  void renderOfficialSite(BuildContext context) {
     if (officialUrl == null) {
-      print('ありません');
+      showNothingMessage(context);
     } else {
       renderUrl(officialUrl!);
     }
   }
 
-  void renderWikipedia() {
+  void renderWikipedia(BuildContext context) {
     if (wikipediaUrl == null) {
-      print('ありません');
+      showNothingMessage(context);
     } else {
       renderUrl(wikipediaUrl!);
     }
@@ -42,8 +53,11 @@ class SearchDetail extends StatelessWidget {
             backgroundColor: Colors.white.withOpacity(0),
             body: Column(children: [
               BaseText(value: title, fontSize: 20),
-              BaseButton(label: '公式サイト', onPressed: renderOfficialSite),
-              BaseTextButton(label: 'wikipedia', onPressed: renderWikipedia),
+              BaseButton(
+                  label: search_detail.labelText['public_url']!, onPressed: () => renderOfficialSite(context)),
+              BaseTextButton(
+                  label: search_detail.labelText['wikipedia']!,
+                  onPressed: () => renderWikipedia(context)),
             ])));
   }
 }

@@ -1,4 +1,4 @@
-const Map<String, String> dayOfWeek = {
+const dayOfWeek = {
   '月': '1',
   '火': '2',
   '水': '3',
@@ -10,3 +10,10 @@ const Map<String, String> dayOfWeek = {
 };
 
 const hintText = '曜日を選択';
+
+const numerFieldText = {
+  'latest': '最新',
+  'current': '現在',
+};
+
+const saving = '保存しています';

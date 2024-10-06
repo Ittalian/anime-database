@@ -7,6 +7,7 @@ import 'package:anime_database/views/widgets/base/base_image_container.dart';
 import 'package:anime_database/views/widgets/base/base_radio_button.dart';
 import 'package:anime_database/views/widgets/base/base_textfield.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:http/http.dart' as http;
 
 class Search extends StatefulWidget {
@@ -50,7 +51,7 @@ class SearchState extends State<Search> {
     final url = Uri.parse(request);
 
     final headers = {
-      'Authorization': 'Bearer 57DqAwityKGke0Zq7iWRdJPLbVzhfGumBcnx9pBCKhs',
+      'Authorization': 'Bearer ${dotenv.get('access_token')}',
     };
 
     try {
