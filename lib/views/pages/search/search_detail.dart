@@ -51,13 +51,17 @@ class SearchDetail extends StatelessWidget {
         imagePath: 'images/search_detail.jpg',
         child: Scaffold(
             backgroundColor: Colors.white.withOpacity(0),
-            body: Column(children: [
+            body: Container(
+              alignment: Alignment.center,
+              child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
               BaseText(value: title, fontSize: 20),
               BaseButton(
                   label: search_detail.labelText['public_site'].toString(), onPressed: () => renderOfficialSite(context)),
               BaseTextButton(
                   label: search_detail.labelText['wikipedia'].toString(),
                   onPressed: () => renderWikipedia(context)),
-            ])));
+            ]))));
   }
 }
