@@ -8,11 +8,11 @@ import '../../../utils/constants/search_detail_constants.dart' as search_detail;
 
 class SearchDetail extends StatelessWidget {
   final String title;
-  final String? officialUrl;
-  final String? wikipediaUrl;
+  final String officialUrl;
+  final String wikipediaUrl;
 
   const SearchDetail(
-      {super.key, required this.title, this.wikipediaUrl, this.officialUrl});
+      {super.key, required this.title, required this.wikipediaUrl, required this.officialUrl});
 
   void showNothingMessage(BuildContext context) {
     ScaffoldMessenger.of(context).showSnackBar(SnackBar(
@@ -25,18 +25,18 @@ class SearchDetail extends StatelessWidget {
   }
 
   void renderOfficialSite(BuildContext context) {
-    if (officialUrl == null) {
+    if (officialUrl == '') {
       showNothingMessage(context);
     } else {
-      renderUrl(officialUrl!);
+      renderUrl(officialUrl);
     }
   }
 
   void renderWikipedia(BuildContext context) {
-    if (wikipediaUrl == null) {
+    if (wikipediaUrl == '') {
       showNothingMessage(context);
     } else {
-      renderUrl(wikipediaUrl!);
+      renderUrl(wikipediaUrl);
     }
   }
 
@@ -54,9 +54,9 @@ class SearchDetail extends StatelessWidget {
             body: Column(children: [
               BaseText(value: title, fontSize: 20),
               BaseButton(
-                  label: search_detail.labelText['public_url']!, onPressed: () => renderOfficialSite(context)),
+                  label: search_detail.labelText['public_site'].toString(), onPressed: () => renderOfficialSite(context)),
               BaseTextButton(
-                  label: search_detail.labelText['wikipedia']!,
+                  label: search_detail.labelText['wikipedia'].toString(),
                   onPressed: () => renderWikipedia(context)),
             ])));
   }

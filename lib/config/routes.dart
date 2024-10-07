@@ -40,8 +40,8 @@ class Routes {
         return MaterialPageRoute(
             builder: (_) => SearchDetail(
                   title: searchDetailOptions['title'],
-                  officialUrl: searchDetailOptions['official_site_url'] ?? '',
-                  wikipediaUrl: searchDetailOptions['wikipedia_url'] ?? '',
+                  officialUrl: searchDetailOptions['official_site_url'],
+                  wikipediaUrl: searchDetailOptions['wikipedia_url'],
                 ));
       case animeParticular:
         final animeParticularOptions = settings.arguments as Map;

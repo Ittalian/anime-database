@@ -4,6 +4,7 @@ import 'package:anime_database/config/routes.dart';
 import 'package:anime_database/utils/models/search_anime.dart';
 import 'package:anime_database/views/widgets/base/base_button.dart';
 import 'package:anime_database/views/widgets/base/base_image_container.dart';
+import 'package:anime_database/views/widgets/base/base_numberfield.dart';
 import 'package:anime_database/views/widgets/base/base_radio_button.dart';
 import 'package:anime_database/views/widgets/base/base_textfield.dart';
 import 'package:flutter/material.dart';
@@ -25,12 +26,14 @@ class SearchState extends State<Search> {
     '冬': 'winter'
   };
   String selectedSeason = '';
+  String year = '';
   String title = '';
 
   @override
   void initState() {
     super.initState();
     selectedSeason = seasons.entries.first.value;
+    setYear((DateTime.now().year + 1).toString());
   }
 
   handleSearch() async {
@@ -41,7 +44,7 @@ class SearchState extends State<Search> {
   Future<List<SearchAnime>> search() async {
     List<SearchAnime> searchResultAnimes = [];
     String request =
-        'https://api.annict.com/v1/works?sort_watchers_count=desc&filter_season=2024-$selectedSeason';
+        'https://api.annict.com/v1/works?sort_watchers_count=desc&filter_season=$year-$selectedSeason';
 
     if (title.isNotEmpty) {
       String titleOption = '&filter_title=$title';
@@ -64,6 +67,7 @@ class SearchState extends State<Search> {
           episodeCount: data['episodes_count'] as int,
           wikipeidaUrl: data['wikipedia_url'] ?? '',
           officialSiteUrl: data['official_site_url'] ?? '',
+          imageUrl: data['images']['facebook']['og_image_url'] ?? '',
         );
         searchResultAnimes.add(anime);
       }
@@ -95,12 +99,23 @@ class SearchState extends State<Search> {
     });
   }
 
+  setYear(String value) {
+    setState(() {
+      year = value;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return BaseImageContainer(
         imagePath: 'images/search_background.jpg',
         child: Column(children: [
           BaseTextfield(label: 'アニメタイトル', setValue: (value) => setTitle(value)),
+          BaseNumberfield(
+              label: '放送年',
+              initNumer: (DateTime.now().year + 1).toString(),
+              setValue: (value) => setYear(value),
+              endText: '年'),
           BaseRadioButton(
               selectMap: seasons, onSelected: (select) => setSeason(select)),
           BaseButton(label: '検索', onPressed: handleSearch),

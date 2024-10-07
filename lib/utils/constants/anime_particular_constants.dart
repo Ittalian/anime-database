@@ -17,3 +17,5 @@ const numerFieldText = {
 };
 
 const saving = '保存しています';
+
+const endText = '話';

@@ -96,20 +96,24 @@ class AnimeParticularViewState extends State<AnimeParticularView> {
                         label: anime_particular.numerFieldText['latest']!,
                         initNumer:
                             widget.animeParticular.latestStory.toString(),
-                        setValue: (value) => setLatestStory(value))
+                        setValue: (value) => setLatestStory(value),
+                        endText: anime_particular.endText)
                     : BaseNumberfield(
                         label: anime_particular.numerFieldText['latest']!,
-                        setValue: (value) => setLatestStory(value)),
+                        setValue: (value) => setLatestStory(value),
+                        endText: anime_particular.endText),
                 const Padding(padding: EdgeInsets.only(left: 20)),
                 isExistAnimeParticular
                     ? BaseNumberfield(
                         label: anime_particular.numerFieldText['current']!,
                         initNumer:
                             widget.animeParticular.currentStory.toString(),
-                        setValue: (value) => setCurrentStory(value))
+                        setValue: (value) => setCurrentStory(value),
+                        endText: anime_particular.endText)
                     : BaseNumberfield(
                         label: anime_particular.numerFieldText['current']!,
-                        setValue: (value) => setCurrentStory(value)),
+                        setValue: (value) => setCurrentStory(value),
+                        endText: anime_particular.endText),
               ]),
               const Padding(padding: EdgeInsets.only(top: 20)),
               BaseSelect(

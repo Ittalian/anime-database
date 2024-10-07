@@ -5,8 +5,9 @@ class BaseNumberfield extends StatefulWidget {
   final String label;
   final String? initNumer;
   final Function(String) setValue;
+  final String endText;
   const BaseNumberfield(
-      {super.key, required this.label, this.initNumer, required this.setValue});
+      {super.key, required this.label, this.initNumer, required this.setValue, required this.endText});
 
   @override
   BaseNumberfieldState createState() => BaseNumberfieldState();
@@ -44,7 +45,7 @@ class BaseNumberfieldState extends State<BaseNumberfield> {
               labelText: widget.label, border: InputBorder.none),
           onChanged: (value) => widget.setValue(value),
         )),
-        const Text('話'),
+        Text(widget.endText),
       ]),
     );
   }
