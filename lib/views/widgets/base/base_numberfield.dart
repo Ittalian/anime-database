@@ -6,8 +6,14 @@ class BaseNumberfield extends StatefulWidget {
   final String? initNumer;
   final Function(String) setValue;
   final String endText;
+  final String? Function(String?)? validator;
   const BaseNumberfield(
-      {super.key, required this.label, this.initNumer, required this.setValue, required this.endText});
+      {super.key,
+      required this.label,
+      this.initNumer,
+      required this.setValue,
+      required this.endText,
+      this.validator});
 
   @override
   BaseNumberfieldState createState() => BaseNumberfieldState();
@@ -37,8 +43,10 @@ class BaseNumberfieldState extends State<BaseNumberfield> {
       child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
         Expanded(
             child: TextFormField(
+          autovalidateMode: AutovalidateMode.onUserInteraction,
           textAlign: TextAlign.center,
           controller: controller,
+          validator: widget.validator,
           keyboardType: TextInputType.number,
           inputFormatters: [FilteringTextInputFormatter.digitsOnly],
           decoration: InputDecoration(

@@ -105,20 +105,35 @@ class SearchState extends State<Search> {
     });
   }
 
+  validYear(String? year) {
+    if (year!.isEmpty || year == '') {
+      return '入力してください';
+    } else if (int.parse(year) < 1950 ||
+        int.parse(year) > DateTime.now().year + 2) {
+      return '数値が不適切です';
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return BaseImageContainer(
         imagePath: 'images/search_background.jpg',
-        child: Column(children: [
-          BaseTextfield(label: 'アニメタイトル', setValue: (value) => setTitle(value)),
-          BaseNumberfield(
-              label: '放送年',
-              initNumer: (DateTime.now().year + 1).toString(),
-              setValue: (value) => setYear(value),
-              endText: '年'),
-          BaseRadioButton(
-              selectMap: seasons, onSelected: (select) => setSeason(select)),
-          BaseButton(label: '検索', onPressed: handleSearch),
-        ]));
+        child: Container(
+            alignment: Alignment.center,
+            child:
+                Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+              BaseTextfield(
+                  label: 'アニメタイトル', setValue: (value) => setTitle(value)),
+              BaseNumberfield(
+                  label: '放送年',
+                  initNumer: (DateTime.now().year + 1).toString(),
+                  setValue: (value) => setYear(value),
+                  endText: '年',
+                  validator: (year) => validYear(year)),
+              BaseRadioButton(
+                  selectMap: seasons,
+                  onSelected: (select) => setSeason(select)),
+              BaseButton(label: '検索', onPressed: handleSearch),
+            ])));
   }
 }

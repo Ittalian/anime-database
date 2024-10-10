@@ -71,6 +71,18 @@ class MyAnimeState extends State<MyAnime> {
     });
   }
 
+  validTitle(String? title) {
+    if (title!.isEmpty || title == '') {
+      return '入力してください';
+    }
+  }
+
+  validReview(String? review) {
+    if (review!.isEmpty || review == '') {
+      return '入力してください';
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final animeViewModel = context.watch<AnimeViewModel>();
@@ -90,19 +102,23 @@ class MyAnimeState extends State<MyAnime> {
             widget.anime == null
                 ? BaseTextfield(
                     label: my_anime.labelText['title']!,
-                    setValue: (value) => setTitle(value))
+                    setValue: (value) => setTitle(value),
+                    validator: (title) => validTitle(title))
                 : BaseTextfield(
                     label: my_anime.labelText['title']!,
                     initText: widget.anime!.title,
-                    setValue: (value) => setTitle(value)),
+                    setValue: (value) => setTitle(value),
+                    validator: (title) => validTitle(title)),
             widget.review == null
                 ? BaseTextfield(
                     label: my_anime.labelText['review']!,
-                    setValue: (value) => setReviewText(value))
+                    setValue: (value) => setReviewText(value),
+                    validator: (review) => validReview(review))
                 : BaseTextfield(
                     label: my_anime.labelText['review']!,
                     initText: widget.review!.value,
-                    setValue: (value) => setReviewText(value)),
+                    setValue: (value) => setReviewText(value),
+                    validator: (review) => validReview(review)),
             widget.anime == null || widget.review == null
                 ? BaseButton(
                     label: my_anime.labelText['add']!,
